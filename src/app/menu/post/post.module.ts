@@ -1,12 +1,14 @@
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { NbAccordionModule, NbButtonModule, NbCardModule, NbListModule, NbRouteTabsetModule, NbStepperModule, NbTabsetModule, NbUserModule } from '@nebular/theme';
+import { NbAccordionModule, NbButtonModule, NbCardModule, NbInputModule, NbListModule, NbRouteTabsetModule, NbStepperModule, NbTabsetModule, NbUserModule } from '@nebular/theme';
 import { ThemeModule } from '../../@theme/theme.module';
+import { DetailComponent } from './detail/detail.component';
 import { ListComponent } from './list/list.component';
 import { PostRoutingModule } from './post-routing.module';
+import { WriteComponent } from './write/write.component';
 
 @NgModule({
-  declarations: [ListComponent],
+  declarations: [ListComponent, DetailComponent, WriteComponent],
   imports: [
     PostRoutingModule,
     FormsModule,
@@ -20,6 +22,7 @@ import { PostRoutingModule } from './post-routing.module';
     NbListModule,
     NbAccordionModule,
     NbUserModule,
+    NbInputModule,
   ],
 })
 export class PostModule { }
