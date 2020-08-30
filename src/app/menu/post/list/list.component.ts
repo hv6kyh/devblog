@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListComponent implements OnInit {
 
+  p = 1;
+
   fruits = [
     'Lemons',
     'Raspberries',
@@ -21,21 +23,19 @@ export class ListComponent implements OnInit {
     'Peaches',
   ];
 
-  users: { name: string, title: string }[] = [
-    { name: 'Carla Espinosa', title: 'Nurse' },
-    { name: 'Bob Kelso', title: 'Doctor of Medicine' },
-    { name: 'Janitor', title: 'Janitor' },
-    { name: 'Perry Cox', title: 'Doctor of Medicine' },
-    { name: 'Ben Sullivan', title: 'Carpenter and photographer' },
-  ];
-
   constructor() { }
 
   ngOnInit(): void {
-    const el = document.getElementById('nb-global-spinner');
-    if (el) {
-      el.style.display = 'none';
-    }
+    // 만약 스피너가 안 사라지면 사용할것
+    // const el = document.getElementById('nb-global-spinner');
+    // if (el) {
+    //   el.style.display = 'none';
+    // }
+  }
+
+  pageChanged(p: number) {
+    console.log('e: ', p);
+    this.p = p;
   }
 
 }

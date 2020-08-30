@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NbAccordionModule, NbButtonModule, NbCardModule, NbInputModule, NbListModule, NbRouteTabsetModule, NbStepperModule, NbTabsetModule, NbUserModule } from '@nebular/theme';
+import { NgxPaginationModule } from 'ngx-pagination';
 import { ThemeModule } from '../../@theme/theme.module';
 import { DetailComponent } from './detail/detail.component';
 import { ListComponent } from './list/list.component';
@@ -23,6 +24,7 @@ import { WriteComponent } from './write/write.component';
     NbAccordionModule,
     NbUserModule,
     NbInputModule,
+    NgxPaginationModule,
   ],
 })
 export class PostModule { }

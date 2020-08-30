@@ -4,11 +4,19 @@
       <nb-card-header>Some Fruits</nb-card-header>
       <nb-card-body>
         <nb-list>
-          <nb-list-item *ngFor="let fruit of fruits">
+          <nb-list-item
+            *ngFor="
+              let fruit of fruits
+                | paginate: { itemsPerPage: 10, currentPage: p }
+            "
+          >
             {{ fruit }}
           </nb-list-item>
         </nb-list>
       </nb-card-body>
+      <pagination-controls
+        (pageChange)="this.pageChanged($event)"
+      ></pagination-controls>
     </nb-card>
   </div>
 </div>
