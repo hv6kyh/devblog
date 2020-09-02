@@ -5,10 +5,10 @@ import { ListComponent } from './list/list.component';
 import { WriteComponent } from './write/write.component';
 
 const routes: Routes = [
-  {
-    path: 'list',
-    component: ListComponent,
-  },
+  // {
+  //   path: 'list',
+  //   component: ListComponent,
+  // },
   {
     path: 'write',
     component: WriteComponent,
@@ -18,7 +18,8 @@ const routes: Routes = [
     component: DetailComponent,
   },
 
-  { path: '', redirectTo: 'list', pathMatch: 'full' },
+  // { path: '', redirectTo: 'list', pathMatch: 'full' },
+  { path: '', component: ListComponent },
 ];
 
 @NgModule({

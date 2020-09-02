@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PostService } from '../post.service';
 
 @Component({
   selector: 'ngx-list',
@@ -23,7 +24,7 @@ export class ListComponent implements OnInit {
     'Peaches',
   ];
 
-  constructor() { }
+  constructor(private readonly postService: PostService) { }
 
   ngOnInit(): void {
     // 만약 스피너가 안 사라지면 사용할것
@@ -31,6 +32,14 @@ export class ListComponent implements OnInit {
     // if (el) {
     //   el.style.display = 'none';
     // }
+    this.postService.getPostList().subscribe(resp => {
+      if (resp.status === 200 && resp.data) {
+        console.log('resp.data: ', resp.data);
+        for (let i = 0; i < resp.data.length; i++) {
+          this.fruits[i] = resp.data[i]['title'];
+        }
+      }
+    });
   }
 
   pageChanged(p: number) {

@@ -4,7 +4,7 @@ import { NbAuthComponent, NbLoginComponent, NbLogoutComponent, NbRegisterCompone
 
 export const routes: Routes = [
   {
-    path: 'pages',
+    path: 'pages2',
     loadChildren: () => import('./pages/pages.module')
       .then(m => m.PagesModule),
   },
@@ -39,11 +39,11 @@ export const routes: Routes = [
     ],
   },
   {
-    path: '',
+    path: 'pages',
     loadChildren: () => import('./menu/menu.module')
       .then(m => m.MenuModule),
   },
-  // { path: '', redirectTo: 'pages', pathMatch: 'full' },
+  { path: '', redirectTo: 'pages', pathMatch: 'full' },
   { path: '**', redirectTo: 'pages' },
 ];
 

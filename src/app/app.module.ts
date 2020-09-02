@@ -8,7 +8,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NbChatModule, NbDatepickerModule, NbDialogModule, NbMenuModule, NbSidebarModule, NbToastrModule, NbWindowModule } from '@nebular/theme';
-// import { NgxPaginationModule } from 'ngx-pagination';
+import { MarkdownModule } from 'ngx-markdown';
 import { CoreModule } from './@core/core.module';
 import { ThemeModule } from './@theme/theme.module';
 import { AppRoutingModule } from './app-routing.module';
@@ -32,7 +32,7 @@ import { AppComponent } from './app.component';
     }),
     CoreModule.forRoot(),
     ThemeModule.forRoot(),
-    // NgxPaginationModule,
+    MarkdownModule.forRoot(),
   ],
   bootstrap: [AppComponent],
 })
