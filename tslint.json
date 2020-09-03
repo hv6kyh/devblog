@@ -25,7 +25,6 @@
     "import-blacklist": [
       true
     ],
-    "import-spacing": true,
     "indent": [
       true,
       "spaces"
@@ -38,14 +37,6 @@
     ],
     "member-access": false,
     "no-arg": true,
-    "no-console": [
-      true,
-      "debug",
-      "log",
-      "time",
-      "timeEnd",
-      "trace"
-    ],
     "no-construct": true,
     "no-debugger": true,
     "no-duplicate-super": true,
@@ -96,14 +87,6 @@
     "typeof-compare": true,
     "unified-signatures": true,
     "variable-name": false,
-    "whitespace": [
-      true,
-      "check-branch",
-      "check-decl",
-      "check-operator",
-      "check-separator",
-      "check-type"
-    ],
     "directive-selector": [
       true,
       "attribute",
@@ -115,16 +98,6 @@
       "element",
       "ngx",
       "kebab-case"
-    ],
-    "ban": [
-      true,
-      "eval",
-      "fit",
-      "fdescribe",
-      {
-        "name": "$",
-        "message": "please don't"
-      }
     ],
     "no-inputs-metadata-property": true,
     "no-outputs-metadata-property": true,

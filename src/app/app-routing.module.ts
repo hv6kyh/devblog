@@ -1,12 +1,18 @@
 import { NgModule } from '@angular/core';
 import { ExtraOptions, RouterModule, Routes } from '@angular/router';
-import { NbAuthComponent, NbLoginComponent, NbLogoutComponent, NbRegisterComponent, NbRequestPasswordComponent, NbResetPasswordComponent } from '@nebular/auth';
+import {
+  NbAuthComponent,
+  NbLoginComponent,
+  NbLogoutComponent,
+  NbRegisterComponent,
+  NbRequestPasswordComponent,
+  NbResetPasswordComponent,
+} from '@nebular/auth';
 
 export const routes: Routes = [
   {
     path: 'pages2',
-    loadChildren: () => import('./pages/pages.module')
-      .then(m => m.PagesModule),
+    loadChildren: () => import('./pages/pages.module').then((m) => m.PagesModule),
   },
   {
     path: 'auth',
@@ -40,8 +46,7 @@ export const routes: Routes = [
   },
   {
     path: 'pages',
-    loadChildren: () => import('./menu/menu.module')
-      .then(m => m.MenuModule),
+    loadChildren: () => import('./menu/menu.module').then((m) => m.MenuModule),
   },
   { path: '', redirectTo: 'pages', pathMatch: 'full' },
   { path: '**', redirectTo: 'pages' },
@@ -55,5 +60,4 @@ const config: ExtraOptions = {
   imports: [RouterModule.forRoot(routes, config)],
   exports: [RouterModule],
 })
-export class AppRoutingModule {
-}
+export class AppRoutingModule {}
