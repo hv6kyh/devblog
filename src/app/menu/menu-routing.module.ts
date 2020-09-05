@@ -16,38 +16,37 @@ const routes: Routes = [
   //   },
   // },
   {
-  path: '',
-  component: MenuComponent,
-  children: [
-    {
-      // matcher: (url) => {
-      //   if (url.length === 1 && url[0].path.startsWith('post')) {
-      //     console.log('url matcher에서 감지: ', url);
-      //     return {
-      //       consumed: url,
-      //     };
-      //   }
-      //   return null;
-      // },
-      path: 'post/:ctg',
-      loadChildren: () => import('./post/post.module')
-        .then(m => m.PostModule),
-    },
-    {
-      path: '',
-      redirectTo: 'post',
-      pathMatch: 'full',
-    },
-    {
-      path: '**',
-      component: NotFoundComponent,
-    },
-  ],
-}];
+    path: '',
+    component: MenuComponent,
+    children: [
+      {
+        // matcher: (url) => {
+        //   if (url.length === 1 && url[0].path.startsWith('post')) {
+        //     console.log('url matcher에서 감지: ', url);
+        //     return {
+        //       consumed: url,
+        //     };
+        //   }
+        //   return null;
+        // },
+        path: 'post/:ctg',
+        loadChildren: () => import('./post/post.module').then((m) => m.PostModule),
+      },
+      {
+        path: '',
+        redirectTo: 'post',
+        pathMatch: 'full',
+      },
+      {
+        path: '**',
+        component: NotFoundComponent,
+      },
+    ],
+  },
+];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class MenuRoutingModule {
-}
+export class MenuRoutingModule {}

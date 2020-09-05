@@ -8,12 +8,6 @@ import { OtherModule } from './other/other.module';
 
 @NgModule({
   declarations: [MenuComponent],
-  imports: [
-    HttpClientModule,
-    MenuRoutingModule,
-    ThemeModule,
-    NbMenuModule,
-    OtherModule,
-  ],
+  imports: [HttpClientModule, MenuRoutingModule, ThemeModule, NbMenuModule, OtherModule],
 })
-export class MenuModule { }
+export class MenuModule {}

@@ -5,16 +5,14 @@ import { map, takeUntil } from 'rxjs/operators';
 import { UserData } from '../../../@core/data/users';
 import { LayoutService } from '../../../@core/utils';
 
-
 @Component({
   selector: 'ngx-header',
   styleUrls: ['./header.component.scss'],
   templateUrl: './header.component.html',
 })
 export class HeaderComponent implements OnInit, OnDestroy {
-
   private destroy$: Subject<void> = new Subject<void>();
-  userPictureOnly: boolean = false;
+  // userPictureOnly: boolean = false;
   user: any;
 
   themes = [
@@ -38,37 +36,42 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   currentTheme = 'default';
 
-  userMenu = [ { title: 'Profile' }, { title: 'Log out', link: '/auth/login' } ];
+  userMenu = [{ title: 'Log out', link: '/auth/login' }];
 
-  constructor(private sidebarService: NbSidebarService,
-              private menuService: NbMenuService,
-              private themeService: NbThemeService,
-              private userService: UserData,
-              private layoutService: LayoutService,
-              private breakpointService: NbMediaBreakpointsService) {
-  }
+  constructor(
+    private sidebarService: NbSidebarService,
+    private menuService: NbMenuService,
+    private themeService: NbThemeService,
+    private userService: UserData,
+    private layoutService: LayoutService,
+  ) {}
+  // private breakpointService: NbMediaBreakpointsService,
 
   ngOnInit() {
-    this.currentTheme = this.themeService.currentTheme;
+    this.themeService.changeTheme('corporate');
+    // this.currentTheme = this.themeService.currentTheme;
 
-    this.userService.getUsers()
+    this.userService
+      .getUsers()
       .pipe(takeUntil(this.destroy$))
-      .subscribe((users: any) => this.user = users.nick);
+      .subscribe((users: any) => (this.user = users.youngho));
 
-    const { xl } = this.breakpointService.getBreakpointsMap();
-    this.themeService.onMediaQueryChange()
-      .pipe(
-        map(([, currentBreakpoint]) => currentBreakpoint.width < xl),
-        takeUntil(this.destroy$),
-      )
-      .subscribe((isLessThanXl: boolean) => this.userPictureOnly = isLessThanXl);
+    // const { xl } = this.breakpointService.getBreakpointsMap();
+    // this.themeService
+    //   .onMediaQueryChange()
+    //   .pipe(
+    //     map(([, currentBreakpoint]) => currentBreakpoint.width < xl),
+    //     takeUntil(this.destroy$),
+    //   )
+    //   .subscribe((isLessThanXl: boolean) => (this.userPictureOnly = isLessThanXl));
 
-    this.themeService.onThemeChange()
-      .pipe(
-        map(({ name }) => name),
-        takeUntil(this.destroy$),
-      )
-      .subscribe(themeName => this.currentTheme = themeName);
+    // this.themeService
+    //   .onThemeChange()
+    //   .pipe(
+    //     map(({ name }) => name),
+    //     takeUntil(this.destroy$),
+    //   )
+    //   .subscribe((themeName) => (this.currentTheme = themeName));
   }
 
   ngOnDestroy() {

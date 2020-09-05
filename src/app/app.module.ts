@@ -7,7 +7,15 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NbChatModule, NbDatepickerModule, NbDialogModule, NbMenuModule, NbSidebarModule, NbToastrModule, NbWindowModule } from '@nebular/theme';
+import {
+  NbChatModule,
+  NbDatepickerModule,
+  NbDialogModule,
+  NbMenuModule,
+  NbSidebarModule,
+  NbToastrModule,
+  NbWindowModule,
+} from '@nebular/theme';
 import { MarkdownModule } from 'ngx-markdown';
 import { CoreModule } from './@core/core.module';
 import { ThemeModule } from './@theme/theme.module';
@@ -36,5 +44,4 @@ import { AppComponent } from './app.component';
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule {
-}
+export class AppModule {}

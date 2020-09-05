@@ -45,7 +45,7 @@ module.exports = {
         },
       },
     ],
-    '@typescript-eslint/naming-convention': 'error',
+    '@typescript-eslint/naming-convention': 'warn',
     '@typescript-eslint/no-empty-function': 'off',
     '@typescript-eslint/no-empty-interface': 'error',
     '@typescript-eslint/no-misused-new': 'error',

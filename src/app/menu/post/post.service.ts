@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { APIResponse } from './../constant/DTO/api.response';
+import { APIError, APISuccess } from '../../shared/constant/DTO';
+import { API_URL } from '../../shared/config/config';
 
 @Injectable({
   providedIn: 'root',
@@ -9,19 +10,11 @@ import { APIResponse } from './../constant/DTO/api.response';
 export class PostService {
   constructor(private readonly http: HttpClient) {}
 
-  getPostList(): Observable<APIResponse> {
-    return this.http.get<APIResponse>('http://localhost:3000/dev/api' + '/post?category=backend');
+  getPostList(category: string): Observable<APISuccess | APIError> {
+    return this.http.get<APISuccess | APIError>(API_URL + `/post?category=${category}`);
   }
 
-  getPostDetail(postId: string): Observable<APIResponse> {
-    return this.http.get<APIResponse>('http://localhost:3000/dev/api' + `/post/${postId}`);
+  getPostDetail(postId: string): Observable<APISuccess | APIError> {
+    return this.http.get<APISuccess | APIError>(API_URL + `/post/${postId}`);
   }
-
-  // createPost(dto: PostCreate): Observable<PostDetail> {
-  //   return this.http.post<PostDetail>(API_URL + '/post', {
-  //     title: dto.title,
-  //     author: dto.author,
-  //     content: dto.content,
-  //   });
-  // }
 }

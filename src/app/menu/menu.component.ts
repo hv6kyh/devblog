@@ -1,6 +1,17 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { APISuccess, APIError } from '../shared/constant/DTO';
+import { API_URL } from '../shared/config/config';
+
+interface Menu {
+  title: string;
+  icon: string;
+  children: {
+    title: string;
+    link: string;
+  };
+}
 
 @Component({
   selector: 'ngx-menu',
@@ -8,37 +19,22 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./menu.component.scss'],
 })
 export class MenuComponent implements OnInit, OnDestroy {
-
-  // menu: Menu[];
-  menu = [{
-    'children': [
-      {
-        'link': '/pages/post/frontend',
-        'title': '프론트엔드',
-      },
-      {
-        'link': '/pages/post/backend',
-        'title': '백엔드',
-      },
-    ],
-    'icon': 'layout-outline',
-    'title': 'post',
-  }];
+  private readonly prefix = 'menu';
+  menus: Menu[] = [];
   http$: Subscription;
 
-  constructor(private readonly http: HttpClient) {
-    // this.http$ = this.http
-    //   .get<APIResponse>('http://localhost:3000/dev/api' + '/menu')
-    //   .subscribe((resp: APIResponse) => {
-    //     if (resp.status === 200 && resp.data) {
-    //       this.menu = resp.data;
-    //     }
-    //   });
+  constructor(private readonly http: HttpClient) {}
+
+  ngOnInit(): void {
+    this.http$ = this.http.get<APISuccess | APIError>(API_URL + `/${this.prefix}`).subscribe((resp) => {
+      if (resp.success) {
+        resp = resp as APISuccess;
+        this.menus = resp.data;
+      }
+    });
   }
 
-  ngOnInit(): void {}
-
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     if (this.http$) {
       this.http$.unsubscribe();
     }
