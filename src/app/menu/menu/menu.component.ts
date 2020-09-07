@@ -1,16 +1,17 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { APISuccess, APIError } from '../shared/constant/DTO';
-import { API_URL } from '../shared/config/config';
+import { APISuccess } from '../../shared/constant/DTO';
+import { MenuService } from './menu.service';
 
 interface Menu {
   title: string;
   icon: string;
-  children: {
-    title: string;
-    link: string;
-  };
+  children: [
+    {
+      title: string;
+      link: string;
+    },
+  ];
 }
 
 @Component({
@@ -21,12 +22,12 @@ interface Menu {
 export class MenuComponent implements OnInit, OnDestroy {
   private readonly prefix = 'menu';
   menus: Menu[] = [];
-  http$: Subscription;
+  private http$: Subscription;
 
-  constructor(private readonly http: HttpClient) {}
+  constructor(private readonly menuService: MenuService) {}
 
   ngOnInit(): void {
-    this.http$ = this.http.get<APISuccess | APIError>(API_URL + `/${this.prefix}`).subscribe((resp) => {
+    this.http$ = this.menuService.getmenuList().subscribe((resp) => {
       if (resp.success) {
         resp = resp as APISuccess;
         this.menus = resp.data;

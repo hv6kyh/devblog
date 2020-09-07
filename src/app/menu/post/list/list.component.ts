@@ -4,6 +4,7 @@ import { APISuccess, APIError } from '../../../shared/constant/DTO';
 import { PostList } from '../types';
 import { Subscription } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
+import { NbMenuService } from '@nebular/theme';
 
 @Component({
   selector: 'ngx-list',
@@ -15,11 +16,22 @@ export class ListComponent implements OnInit, OnDestroy {
   p = 1;
 
   posts: Array<PostList> = [];
+
+  public router: Router = null;
   private http$: Subscription;
   private route$: Subscription;
+  private menu$: Subscription;
+
   private currentCategory: string;
 
-  constructor(private readonly postService: PostService, private route: ActivatedRoute) {}
+  constructor(
+    private readonly postService: PostService,
+    private readonly route: ActivatedRoute,
+    private readonly menuService: NbMenuService,
+    private readonly injector: Injector,
+  ) {
+    this.router = this.injector.get(Router);
+  }
 
   ngOnInit(): void {
     // 만약 스피너가 안 사라지면 사용할것
@@ -47,6 +59,10 @@ export class ListComponent implements OnInit, OnDestroy {
           // resp = resp as APIError;
         }
       });
+
+      this.menu$ = this.menuService.getSelectedItem('menu').subscribe((menu) => {
+        console.log('현재 메뉴: ', menu);
+      });
     });
   }
 
@@ -57,10 +73,21 @@ export class ListComponent implements OnInit, OnDestroy {
     if (this.route$) {
       this.route$.unsubscribe();
     }
+    if (this.menu$) {
+      this.menu$.unsubscribe();
+    }
   }
 
   pageChanged(p: number) {
     console.log('e: ', p);
     this.p = p;
+  }
+
+  goToDetail(post: PostList) {
+    this.router.navigate(['../', post.post_id], { relativeTo: this.route });
+  }
+
+  goToWrite() {
+    this.router.navigate(['../write'], { relativeTo: this.route });
   }
 }

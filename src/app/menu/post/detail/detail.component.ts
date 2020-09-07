@@ -1,4 +1,9 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, OnDestroy } from '@angular/core';
+import { PostService } from '../post.service';
+import { ActivatedRoute } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { APISuccess } from '../../../shared/constant/DTO/success.response';
+import { Post } from '../types';
 
 @Component({
   selector: 'ngx-detail',
@@ -6,17 +11,34 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
   styleUrls: ['./detail.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class DetailComponent implements OnInit {
+export class DetailComponent implements OnInit, OnDestroy {
+  private postId: string;
+  post: Post = null;
+  str: string;
 
-  markdown = '## 줄바꿈을    이렇게    하면    될려낭    ## 줄바꿈을    이렇게    하면    될려낭    ## 줄바꿈을    이렇게    하면    될려낭    ## 줄바꿈을    이렇게    하면    될려낭    ## 줄바꿈을    이렇게    하면    될려낭    ## 줄바꿈을    이렇게    하면    될려낭    ## 줄바꿈을    이렇게    하면    될려낭    ## 줄바꿈을    이렇게    하면    될려낭    ## 줄바꿈을    이렇게    하면    될려낭    ## 줄바꿈을    이렇게    하면    될려낭    ## 줄바꿈을    이렇게    하면    될려낭    ## 줄바꿈을    이렇게    하면    될려낭    ## 줄바꿈을    이렇게    하면    될려낭    ## 줄바꿈을    이렇게    하면    될려낭    ## 줄바꿈을    이렇게    하면    될려낭    ## 줄바꿈을    이렇게    하면    될려낭    ## 줄바꿈을    이렇게    하면    될려낭    ## 줄바꿈을    이렇게    하면    될려낭    ## 줄바꿈을    이렇게    하면    될려낭    ## 줄바꿈을    이렇게    하면    될려낭    ## 줄바꿈을    이렇게    하면    될려낭    ## 줄바꿈을    이렇게    하면    될려낭    ## 줄바꿈을    이렇게    하면    될려낭    ## 줄바꿈을    이렇게    하면    될려낭    ## 줄바꿈을    이렇게    하면    될려낭    ## 줄바꿈을    이렇게    하면    될려낭    ## 줄바꿈을    이렇게    하면    될려낭    ## 줄바꿈을    이렇게    하면    될려낭    ## 줄바꿈을    이렇게    하면    될려낭    ## 줄바꿈을    이렇게    하면    될려낭    ## 줄바꿈을    이렇게    하면    될려낭    ## 줄바꿈을    이렇게    하면    될려낭    ## 줄바꿈을    이렇게    하면    될려낭    ## 줄바꿈을    이렇게    하면    될려낭    ## 줄바꿈을    이렇게    하면    될려낭    ## 줄바꿈을    이렇게    하면    될려낭    ## 줄바꿈을    이렇게    하면    될려낭    ## 줄바꿈을    이렇게    하면    될려낭    ## 줄바꿈을    이렇게    하면    될려낭    ## 줄바꿈을    이렇게    하면    될려낭    ## 줄바꿈을    이렇게    하면    될려낭    ## 줄바꿈을    이렇게    하면    될려낭    ## 줄바꿈을    이렇게    하면    될려낭    ## 줄바꿈을    이렇게    하면    될려낭    ## 줄바꿈을    이렇게    하면    될려낭    ## 줄바꿈을    이렇게    하면    될려낭    ## 줄바꿈을    이렇게    하면    될려낭    ## 줄바꿈을    이렇게    하면    될려낭    ## 줄바꿈을    이렇게    하면    될려낭    ## 줄바꿈을    이렇게    하면    될려낭    ## 줄바꿈을    이렇게    하면    될려낭    ## 줄바꿈을    이렇게    하면    될려낭    ## 줄바꿈을    이렇게    하면    될려낭    ## 줄바꿈을    이렇게    하면    될려낭    ## 줄바꿈을    이렇게    하면    될려낭    ## 줄바꿈을    이렇게    하면    될려낭    ## 줄바꿈을    이렇게    하면    될려낭    ## 줄바꿈을    이렇게    하면    될려낭    ## 줄바꿈을    이렇게    하면    될려낭    ## 줄바꿈을    이렇게    하면    될려낭    ## 줄바꿈을    이렇게    하면    될려낭    ## 줄바꿈을    이렇게    하면    될려낭    ## 줄바꿈을    이렇게    하면    될려낭    ## 줄바꿈을    이렇게    하면    될려낭    ## 줄바꿈을    이렇게    하면    될려낭    ## 줄바꿈을    이렇게    하면    될려낭    ## 줄바꿈을    이렇게    하면    될려낭    ## 줄바꿈을    이렇게    하면    될려낭    ## 줄바꿈을    이렇게    하면    될려낭    ## 줄바꿈을    이렇게    하면    될려낭    ## 줄바꿈을    이렇게    하면    될려낭    ## 줄바꿈을    이렇게    하면    될려낭    ## 줄바꿈을    이렇게    하면    될려낭    ## 줄바꿈을    이렇게    하면    될려낭    ## 줄바꿈을    이렇게    하면    될려낭    ## 줄바꿈을    이렇게    하면    될려낭    ## 줄바꿈을    이렇게    하면    될려낭    ## 줄바꿈을    이렇게    하면    될려낭    ## 줄바꿈을    이렇게    하면    될려낭    ## 줄바꿈을    이렇게    하면    될려낭    ## 줄바꿈을    이렇게    하면    될려낭    ## 줄바꿈을    이렇게    하면    될려낭    ## 줄바꿈을    이렇게    하면    될려낭    ## 줄바꿈을    이렇게    하면    될려낭    ## 줄바꿈을    이렇게    하면    될려낭    ## 줄바꿈을    이렇게    하면    될려낭    ## 줄바꿈을    이렇게    하면    될려낭    ## 줄바꿈을    이렇게    하면    될려낭    ## 줄바꿈을    이렇게    하면    될려낭    ## 줄바꿈을    이렇게    하면    될려낭    ## 줄바꿈을    이렇게    하면    될려낭    ## 줄바꿈을    이렇게    하면    될려낭    ## 줄바꿈을    이렇게    하면    될려낭    ## 줄바꿈을    이렇게    하면    될려낭    ## 줄바꿈을    이렇게    하면    될려낭    ## 줄바꿈을    이렇게    하면    될려낭    ## 줄바꿈을    이렇게    하면    될려낭    ## 줄바꿈을    이렇게    하면    될려낭    ## 줄바꿈을    이렇게    하면    될려낭    ## 줄바꿈을    이렇게    하면    될려낭    ## 줄바꿈을    이렇게    하면    될려낭    ## 줄바꿈을    이렇게    하면    될려낭    ## 줄바꿈을    이렇게    하면    될려낭    ## 줄바꿈을    이렇게    하면    될려낭    ## 줄바꿈을    이렇게    하면    될려낭    ## 줄바꿈을    이렇게    하면    될려낭    ## 줄바꿈을    이렇게    하면    될려낭    ## 줄바꿈을    이렇게    하면    될려낭    ';
+  private http$: Subscription;
 
-  constructor() { }
+  constructor(private readonly postService: PostService, private readonly route: ActivatedRoute) {}
 
   ngOnInit(): void {
+    this.postId = this.route.snapshot.params.post_id;
+
+    this.http$ = this.postService.getPostDetail(this.postId).subscribe((resp) => {
+      console.log('디테일 resp: ', resp);
+
+      if (resp.success) {
+        resp = resp as APISuccess;
+        this.post = resp.data;
+        console.log('디테일 this.post: ', this.post);
+      }
+    });
+
+    this.str = '텍스트';
   }
 
-  onReady() {
-    console.log('준비됨');
+  ngOnDestroy() {
+    if (this.http$) {
+      this.http$.unsubscribe();
+    }
   }
-
 }

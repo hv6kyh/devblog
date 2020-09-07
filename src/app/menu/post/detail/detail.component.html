@@ -1,10 +1,12 @@
 <div class="col-md-12 col-lg-12 col-xxxl-12">
   <nb-card size="giant">
-    <nb-card-header>Giant card</nb-card-header>
+    <nb-card-header>{{ this.post?.title }}</nb-card-header>
     <nb-card-body>
       <div markdown ngPreserveWhitespaces>
-        {{ this.markdown }}
+        {{ this.post?.content }}
       </div>
     </nb-card-body>
   </nb-card>
 </div>
+
+{{ this.post.title }}

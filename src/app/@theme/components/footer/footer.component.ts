@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
     <span class="created-by">
       <nb-icon icon="star"></nb-icon>
       <!-- Created with ♥ by <b><a href="https://akveo.page.link/8V2f" target="_blank">Akveo</a></b> 2019 -->
-      Powered By Angular + NestJs 2020
+      Powered By Angular + NestJs 2020 On Serverless Framwork!!
     </span>
     <div class="socials">
       <a href="#" onclick="alert('그런건 없어용~')" class="ion ion-social-github"></a>
@@ -17,5 +17,4 @@ import { Component } from '@angular/core';
     </div>
   `,
 })
-export class FooterComponent {
-}
+export class FooterComponent {}

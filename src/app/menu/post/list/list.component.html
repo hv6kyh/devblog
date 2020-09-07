@@ -1,10 +1,16 @@
 <div class="lists row">
   <div class="col-md-12 col-lg-12 col-xxxl-12">
     <nb-card class="list-card">
-      <nb-card-header>Some Fruits</nb-card-header>
+      <nb-card-header
+        >Some Fruits
+        <button nbButton hero status="primary" (click)="this.goToWrite()">글 작성</button>
+      </nb-card-header>
       <nb-card-body>
         <nb-list>
-          <nb-list-item *ngFor="let post of posts | paginate: { itemsPerPage: 10, currentPage: p }">
+          <nb-list-item
+            *ngFor="let post of posts | paginate: { itemsPerPage: 10, currentPage: p }"
+            (click)="this.goToDetail(post)"
+          >
             {{ post.title }}
           </nb-list-item>
         </nb-list>
