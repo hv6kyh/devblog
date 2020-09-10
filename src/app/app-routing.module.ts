@@ -16,33 +16,36 @@ export const routes: Routes = [
   },
   {
     path: 'auth',
+    // loadChildren: () => import('./shared/auth/auth.module').then((m) => m.AuthModule),
+    // loadChildren: './shared/auth/auth.module#AuthRoutingModule',
     component: NbAuthComponent,
-    children: [
-      {
-        path: '',
-        component: NbLoginComponent,
-      },
-      {
-        path: 'login',
-        component: NbLoginComponent,
-      },
-      {
-        path: 'register',
-        component: NbRegisterComponent,
-      },
-      {
-        path: 'logout',
-        component: NbLogoutComponent,
-      },
-      {
-        path: 'request-password',
-        component: NbRequestPasswordComponent,
-      },
-      {
-        path: 'reset-password',
-        component: NbResetPasswordComponent,
-      },
-    ],
+    // children: [
+    //   {
+    //     path: '',
+    //     component: NbLoginComponent,
+    //   },
+    //   {
+    //     path: 'login',
+    //     component: NbLoginComponent,
+    //   },
+    //   {
+    //     path: 'register',
+    //     component: NbRegisterComponent,
+    //   },
+    //   {
+    //     path: 'logout',
+    //     component: NbLogoutComponent,
+    //   },
+    //   {
+    //     path: 'request-password',
+    //     component: NbRequestPasswordComponent,
+    //   },
+    //   {
+    //     path: 'reset-password',
+    //     component: NbResetPasswordComponent,
+    //   },
+    // ],
+    loadChildren: () => import('./shared/auth/auth.module').then((m) => m.AuthModule),
   },
   {
     path: 'pages',

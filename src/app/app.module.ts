@@ -21,6 +21,8 @@ import { CoreModule } from './@core/core.module';
 import { ThemeModule } from './@theme/theme.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { NbAuthModule, NbPasswordAuthStrategy, NbAuthJWTToken } from '@nebular/auth';
+import { API_URL } from './shared/config/config';
 
 @NgModule({
   declarations: [AppComponent],
@@ -41,6 +43,23 @@ import { AppComponent } from './app.component';
     CoreModule.forRoot(),
     ThemeModule.forRoot(),
     MarkdownModule.forRoot(),
+    NbAuthModule.forRoot({
+      strategies: [
+        NbPasswordAuthStrategy.setup({
+          name: 'email',
+          baseEndpoint: API_URL,
+          token: {
+            class: NbAuthJWTToken,
+            key: 'data.access_token',
+          },
+          login: {
+            endpoint: '/user/signin',
+            method: 'post',
+          },
+        }),
+      ],
+      forms: {},
+    }),
   ],
   bootstrap: [AppComponent],
 })

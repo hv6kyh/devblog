@@ -23,6 +23,7 @@ export class ListComponent implements OnInit, OnDestroy {
   private menu$: Subscription;
 
   private currentCategory: string;
+  listTitle: string;
 
   constructor(
     private readonly postService: PostService,
@@ -42,13 +43,13 @@ export class ListComponent implements OnInit, OnDestroy {
 
     this.route$ = this.route.params.subscribe((param) => {
       this.currentCategory = param.ctg;
-      this.posts = [];
-      this.p = 1;
 
       this.http$ = this.postService.getPostList(this.currentCategory).subscribe((resp) => {
         if (resp.success) {
           resp = resp as APISuccess;
           if (Array.isArray(resp.data)) {
+            this.posts = [];
+            this.p = 1;
             resp.data.forEach((el) => {
               this.posts.push(el);
             });
@@ -59,10 +60,11 @@ export class ListComponent implements OnInit, OnDestroy {
           // resp = resp as APIError;
         }
       });
+    });
 
-      this.menu$ = this.menuService.getSelectedItem('menu').subscribe((menu) => {
-        console.log('현재 메뉴: ', menu);
-      });
+    this.menu$ = this.menuService.onItemSelect().subscribe((menu) => {
+      console.log('현재 메뉴: ', menu);
+      this.listTitle = menu.item.title;
     });
   }
 
