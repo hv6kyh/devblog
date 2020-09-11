@@ -2,43 +2,15 @@
   <nb-card-body class="example-items-col">
     <form [formGroup]="createPostForm" (ngSubmit)="onSubmit()">
       <p>
-        <input
-          type="text"
-          nbInput
-          fullWidth
-          fieldSize="small"
-          placeholder="제목"
-          formControlName="title"
-        />
+        <input type="text" nbInput fullWidth fieldSize="small" placeholder="제목" formControlName="title" />
       </p>
       <p>
-        <textarea
-          nbInput
-          fullWidth
-          placeholder="본문"
-          formControlName="content"
-          rows="20"
-        ></textarea>
+        <textarea nbInput fullWidth placeholder="본문" formControlName="content" rows="20"></textarea>
       </p>
-      <p
-        *ngIf="f.title.invalid && (f.title.dirty || f.title.touched)"
-        class="error"
-      >
-        제목을 입력해주세요.
-      </p>
-      <p
-        *ngIf="f.content.invalid && (f.content.dirty || f.content.touched)"
-        class="error"
-      >
-        내용을 입력해주세요.
-      </p>
-      <button
-        nbButton
-        type="submit"
-        *ngIf="createPostForm.valid"
-        status="primary"
-      >
-        작성
+      <p *ngIf="f.title.invalid && (f.title.dirty || f.title.touched)" class="error">제목을 입력해주세요.</p>
+      <p *ngIf="f.content.invalid && (f.content.dirty || f.content.touched)" class="error">내용을 입력해주세요.</p>
+      <button nbButton type="submit" *ngIf="createPostForm.valid" status="primary">
+        {{ this.buttonLabel }}
       </button>
       <button nbButton disabled *ngIf="!createPostForm.valid">작성</button>
     </form>

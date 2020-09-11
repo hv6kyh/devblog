@@ -1,12 +1,11 @@
 <div class="col-md-12 col-lg-12 col-xxxl-12">
-  <nb-card size="giant">
-    <nb-card-header>{{ this.post?.title }}</nb-card-header>
+  <nb-card size="large">
+    <nb-card-header
+      >{{ this.post?.title }}
+      <button nbButton (click)="this.goToRewrite()" [disabled]="!this.loadFinish">수정</button>
+    </nb-card-header>
     <nb-card-body>
-      <div markdown ngPreserveWhitespaces>
-        {{ this.post?.content }}
-      </div>
+      <markdown [data]="this.post?.content"> </markdown>
     </nb-card-body>
   </nb-card>
 </div>
-
-{{ this.post.title }}

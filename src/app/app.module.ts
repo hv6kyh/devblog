@@ -16,13 +16,29 @@ import {
   NbToastrModule,
   NbWindowModule,
 } from '@nebular/theme';
-import { MarkdownModule } from 'ngx-markdown';
+import { MarkdownModule, MarkedOptions, MarkedRenderer } from 'ngx-markdown';
 import { CoreModule } from './@core/core.module';
 import { ThemeModule } from './@theme/theme.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NbAuthModule, NbPasswordAuthStrategy, NbAuthJWTToken } from '@nebular/auth';
 import { API_URL } from './shared/config/config';
+
+// function that returns `MarkedOptions` with renderer override
+const markedOptionsFactory = (): MarkedOptions => {
+  const renderer = new MarkedRenderer();
+
+  renderer.blockquote = (text: string) => '<blockquote class="blockquote"><p>' + text + '</p></blockquote>';
+
+  return {
+    renderer: renderer,
+    gfm: true,
+    breaks: false,
+    pedantic: false,
+    smartLists: true,
+    smartypants: false,
+  };
+};
 
 @NgModule({
   declarations: [AppComponent],
@@ -42,7 +58,12 @@ import { API_URL } from './shared/config/config';
     }),
     CoreModule.forRoot(),
     ThemeModule.forRoot(),
-    MarkdownModule.forRoot(),
+    MarkdownModule.forRoot({
+      markedOptions: {
+        provide: MarkedOptions,
+        useFactory: markedOptionsFactory,
+      },
+    }),
     NbAuthModule.forRoot({
       strategies: [
         NbPasswordAuthStrategy.setup({
@@ -55,6 +76,9 @@ import { API_URL } from './shared/config/config';
           login: {
             endpoint: '/user/signin',
             method: 'post',
+          },
+          logout: {
+            endpoint: '',
           },
         }),
       ],
