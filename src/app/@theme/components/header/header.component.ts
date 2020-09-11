@@ -68,6 +68,13 @@ export class HeaderComponent implements OnInit, OnDestroy {
         if (token.isValid()) {
           this.user = token.getPayload();
           console.log('토큰 유저: ', this.user);
+
+          // 유효하게 로그인된 상태라고 가정
+          console.log('로그인됨');
+          this.userMenu = [{ title: 'Log out', link: '/auth/logout' }];
+        } else {
+          console.log('로그아웃됨');
+          this.userMenu = [{ title: 'Log in', link: '/auth/login' }];
         }
       });
 

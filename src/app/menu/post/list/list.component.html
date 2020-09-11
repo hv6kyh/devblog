@@ -1,9 +1,11 @@
 <div class="lists row">
   <div class="col-md-12 col-lg-12 col-xxxl-12">
     <nb-card class="list-card">
-      <nb-card-header
-        >{{ this.listTitle }}
-        <button nbButton hero status="primary" (click)="this.goToWrite()">글 작성</button>
+      <nb-card-header>
+        {{ this.listTitle }}
+        <div style="float: right">
+          <button nbButton hero status="primary" (click)="this.goToWrite()">글 작성</button>
+        </div>
       </nb-card-header>
       <nb-card-body>
         <nb-list>
@@ -15,7 +17,9 @@
           </nb-list-item>
         </nb-list>
       </nb-card-body>
-      <pagination-controls (pageChange)="this.pageChanged($event)"></pagination-controls>
+      <div style="margin: 0 auto">
+        <pagination-controls (pageChange)="this.pageChanged($event)"></pagination-controls>
+      </div>
     </nb-card>
   </div>
 </div>

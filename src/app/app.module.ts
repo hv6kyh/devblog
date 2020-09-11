@@ -23,6 +23,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NbAuthModule, NbPasswordAuthStrategy, NbAuthJWTToken } from '@nebular/auth';
 import { API_URL } from './shared/config/config';
+import { AuthGuardService } from './auth-guard.service';
 
 // function that returns `MarkedOptions` with renderer override
 const markedOptionsFactory = (): MarkedOptions => {
@@ -56,6 +57,7 @@ const markedOptionsFactory = (): MarkedOptions => {
     NbChatModule.forRoot({
       messageGoogleMapKey: 'AIzaSyA_wNuCzia92MAmdLRzmqitRGvCF7wCZPY',
     }),
+    NbToastrModule.forRoot(),
     CoreModule.forRoot(),
     ThemeModule.forRoot(),
     MarkdownModule.forRoot({
@@ -85,6 +87,7 @@ const markedOptionsFactory = (): MarkedOptions => {
       forms: {},
     }),
   ],
+  providers: [AuthGuardService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

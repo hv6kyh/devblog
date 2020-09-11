@@ -10,10 +10,7 @@ import { Component } from '@angular/core';
       Powered By Angular + NestJs 2020 On Serverless Framwork!!
     </span>
     <div class="socials">
-      <a href="#" onclick="alert('그런건 없어용~')" class="ion ion-social-github"></a>
-      <a href="#" target="_blank" class="ion ion-social-facebook"></a>
-      <a href="#" target="_blank" class="ion ion-social-twitter"></a>
-      <a href="#" target="_blank" class="ion ion-social-linkedin"></a>
+      <a href="https://github.com/hv6kyh" class="ion ion-social-github"></a>
     </div>
   `,
 })
