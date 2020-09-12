@@ -58,6 +58,7 @@ const markedOptionsFactory = (): MarkedOptions => {
       messageGoogleMapKey: 'AIzaSyA_wNuCzia92MAmdLRzmqitRGvCF7wCZPY',
     }),
     NbToastrModule.forRoot(),
+    NbWindowModule.forRoot(),
     CoreModule.forRoot(),
     ThemeModule.forRoot(),
     MarkdownModule.forRoot({
