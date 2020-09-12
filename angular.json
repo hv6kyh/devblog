@@ -59,10 +59,11 @@
               "node_modules/prismjs/prism.js",
               "node_modules/prismjs/components/prism-csharp.min.js",
               "node_modules/prismjs/components/prism-css.min.js",
+              "node_modules/prismjs/components/prism-json.min.js",
               "node_modules/prismjs/plugins/line-numbers/prism-line-numbers.js",
               "node_modules/prismjs/plugins/line-highlight/prism-line-highlight.js",
               "node_modules/emoji-toolkit/lib/js/joypixels.min.js",
-              "node_modules/katex/dist/katex.min.js",
+              "node_modules/katex/dist/katex.min.js"
             ],
             "allowedCommonJsDependencies": [
               "angular2-chartjs",
@@ -137,10 +138,11 @@
               "node_modules/prismjs/prism.js",
               "node_modules/prismjs/components/prism-csharp.min.js",
               "node_modules/prismjs/components/prism-css.min.js",
+              "node_modules/prismjs/components/prism-json.min.js",
               "node_modules/prismjs/plugins/line-numbers/prism-line-numbers.js",
               "node_modules/prismjs/plugins/line-highlight/prism-line-highlight.js",
               "node_modules/emoji-toolkit/lib/js/joypixels.min.js",
-              "node_modules/katex/dist/katex.min.js",
+              "node_modules/katex/dist/katex.min.js"
             ],
             "styles": [
               "node_modules/bootstrap/dist/css/bootstrap.css",

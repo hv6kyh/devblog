@@ -4,6 +4,7 @@ import { PostService } from '../post.service';
 import { Location } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { PostCreate, PostUpdate, Post } from '../types';
+import { NbAuthService, NbAuthToken } from '@nebular/auth';
 
 @Component({
   selector: 'ngx-write',
@@ -22,6 +23,7 @@ export class WriteComponent implements OnInit {
     private readonly postService: PostService,
     private readonly location: Location,
     private route: ActivatedRoute,
+    private authService: NbAuthService,
   ) {
     this.createPostForm = this.formBuilder.group({
       title: new FormControl('', [Validators.required]),
@@ -46,9 +48,6 @@ export class WriteComponent implements OnInit {
 
   onSubmit() {
     console.log(this.createPostForm.value);
-    // const data: PostCreate = { ...this.createPostForm.value };
-    // data.author = '김영호';
-    // data.category = this.currentCategory;
 
     // 수정하는 경우랑 신규 작성하는 경우
     if (this.post) {
@@ -70,7 +69,14 @@ export class WriteComponent implements OnInit {
       console.log('생성하는 경우임');
 
       const data: PostCreate = { ...this.createPostForm.value };
-      data.author = '김영호';
+      this.authService
+        .getToken()
+        .subscribe((token: NbAuthToken) => {
+          const { name } = token.getPayload();
+          data.author = name;
+        })
+        .unsubscribe();
+      // data.author = '김영호';
       data.category = this.currentCategory;
 
       this.postService.createPost(data).subscribe((resp) => {

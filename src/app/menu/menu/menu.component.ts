@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { APISuccess } from '../../shared/constant/DTO';
 import { MenuService } from './menu.service';
+import { NbMenuItem } from '@nebular/theme';
 
 interface Menu {
   title: string;
@@ -21,7 +22,8 @@ interface Menu {
 })
 export class MenuComponent implements OnInit, OnDestroy {
   private readonly prefix = 'menu';
-  menus: Menu[] = [];
+  // menus: Menu[] = [];
+  menus: NbMenuItem[] = [];
   private http$: Subscription;
 
   constructor(private readonly menuService: MenuService) {}

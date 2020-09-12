@@ -1,0 +1,20 @@
+.grid {
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.grid_item {
+  float: left;
+
+  &.button {
+    float: right;
+  }
+
+  p {
+    line-height: 1em;
+    margin-bottom: 0em;
+    font-style: italic;
+    color: grey;
+    font-size: small;
+  }
+}

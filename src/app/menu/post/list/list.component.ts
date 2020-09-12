@@ -62,10 +62,10 @@ export class ListComponent implements OnInit, OnDestroy {
       });
     });
 
-    this.menu$ = this.menuService.onItemSelect().subscribe((menu) => {
-      console.log('현재 메뉴: ', menu);
-      this.listTitle = menu.item.title;
-    });
+    // this.menu$ = this.menuService.onItemSelect().subscribe((menu) => {
+    //   console.log('현재 메뉴: ', menu);
+    //   this.listTitle = menu.item.title;
+    // });
   }
 
   ngOnDestroy(): void {
@@ -91,5 +91,12 @@ export class ListComponent implements OnInit, OnDestroy {
 
   goToWrite() {
     this.router.navigate(['../write'], { relativeTo: this.route });
+  }
+
+  getCurrentMenu() {
+    this.menu$ = this.menuService.getSelectedItem('menu').subscribe((menu) => {
+      console.log('현재 메뉴: ', menu);
+      // this.listTitle = menu.item.title;
+    });
   }
 }
