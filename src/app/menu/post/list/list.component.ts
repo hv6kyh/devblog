@@ -23,7 +23,7 @@ export class ListComponent implements OnInit, OnDestroy {
   private menu$: Subscription;
 
   private currentCategory: string;
-  listTitle: string;
+  listTitle: string = '목록';
 
   constructor(
     private readonly postService: PostService,
@@ -50,9 +50,10 @@ export class ListComponent implements OnInit, OnDestroy {
           if (Array.isArray(resp.data)) {
             this.posts = [];
             this.p = 1;
-            resp.data.forEach((el) => {
-              this.posts.push(el);
-            });
+            // resp.data.forEach((el) => {
+            //   this.posts.push(el);
+            // });
+            this.posts = resp.data;
           }
         } else {
           // TODO API에서 값을 못 불러오는 경우에
@@ -91,12 +92,5 @@ export class ListComponent implements OnInit, OnDestroy {
 
   goToWrite() {
     this.router.navigate(['../write'], { relativeTo: this.route });
-  }
-
-  getCurrentMenu() {
-    this.menu$ = this.menuService.getSelectedItem('menu').subscribe((menu) => {
-      console.log('현재 메뉴: ', menu);
-      // this.listTitle = menu.item.title;
-    });
   }
 }

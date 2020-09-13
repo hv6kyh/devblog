@@ -2,10 +2,9 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { NbMenuService, NbSidebarService, NbThemeService, NbWindowService } from '@nebular/theme';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import { UserData } from '../../../@core/data/users';
 import { LayoutService } from '../../../@core/utils';
-import { NbAuthJWTToken, NbAuthService, NbAuthToken } from '@nebular/auth';
-import { UserPayload } from 'app/shared/constant/type';
+import { NbAuthService, NbAuthToken } from '@nebular/auth';
+import { UserPayload } from '../../../shared/constant/types';
 import { DonationComponent } from '../../../menu/other/donation/donation.component';
 
 @Component({

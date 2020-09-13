@@ -6,10 +6,6 @@ import { WriteComponent } from './write/write.component';
 import { AuthGuardService } from '../../auth-guard.service';
 
 const routes: Routes = [
-  // {
-  //   path: 'list',
-  //   component: ListComponent,
-  // },
   {
     path: 'write',
     component: WriteComponent,
@@ -19,9 +15,10 @@ const routes: Routes = [
     path: ':post_id',
     component: DetailComponent,
   },
-
-  // { path: '', redirectTo: 'list', pathMatch: 'full' },
-  { path: '', component: ListComponent },
+  {
+    path: '',
+    component: ListComponent,
+  },
 ];
 
 @NgModule({
