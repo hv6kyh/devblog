@@ -1,13 +1,42 @@
 <div class="col-md-12 col-lg-12 col-xxxl-12">
-  <!-- <nb-card size="large">
-    <nb-card-header> 헤더 </nb-card-header>
-    <nb-card-body>
-      <markdown [data]="this.data"> </markdown>
-    </nb-card-body>
-  </nb-card> -->
-  <nb-layout>
-    <nb-layout-column>
-      <markdown [data]="this.post?.content"> </markdown>
-    </nb-layout-column>
-  </nb-layout>
+  <nb-flip-card>
+    <nb-card-front>
+      <nb-card size="large">
+        <nb-card-body>
+          <div>
+            <div style="margin-bottom: 7vh">
+              <h3>past</h3>
+              <img class="logo" alt="c" src="assets/images/logo/c.png" />
+              <img class="logo" alt="java" src="assets/images/logo/java.png" />
+            </div>
+            <div style="margin-bottom: 7vh">
+              <h3>present</h3>
+              <img class="logo" alt="nodejs(express)" src="assets/images/logo/nodejs.png" />
+              <img class="logo" alt="nestjs" src="assets/images/logo/nest.png" />
+              <img class="logo" alt="mysql" src="assets/images/logo/mysql.png" />
+              <img class="logo" alt="angular" src="assets/images/logo/angular.png" />
+              <img class="logo" alt="aws-lambda" src="assets/images/logo/lambda.png" />
+              <img class="logo" alt="serverless framework" src="assets/images/logo/serverless.png" />
+              <img class="logo" alt="aws-dynamodb" src="assets/images/logo/dynamodb.png" />
+            </div>
+            <div>
+              <h3>future</h3>
+              <img class="logo" src="assets/images/logo/docker.png" />
+              <img class="logo" src="assets/images/logo/kubernates.png" />
+            </div>
+          </div>
+        </nb-card-body>
+        <nb-card-footer>더 알아보기</nb-card-footer>
+      </nb-card>
+    </nb-card-front>
+    <nb-card-back>
+      <nb-card size="large">
+        <nb-card-body>
+          <markdown [data]="this.post?.content"> </markdown>
+          <button *ngIf="this.isAuthenticated" nbButton (click)="this.goToRewrite()">수정하기</button>
+        </nb-card-body>
+        <nb-card-footer>뒤로가기</nb-card-footer>
+      </nb-card>
+    </nb-card-back>
+  </nb-flip-card>
 </div>

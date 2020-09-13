@@ -8,17 +8,20 @@ import { OtherModule } from './other/other.module';
 import { HomeComponent } from './home/home.component';
 import { PostModule } from './post/post.module';
 import { MarkdownModule } from 'ngx-markdown';
+import { HomeModule } from './home/home.module';
+import { PostService } from './post/post.service';
 
 @NgModule({
-  declarations: [MenuComponent, HomeComponent],
+  declarations: [MenuComponent],
   imports: [
     HttpClientModule,
     MenuRoutingModule,
     ThemeModule,
     NbMenuModule,
-    NbLayoutModule,
+    // NbLayoutModule,
     OtherModule,
-    MarkdownModule.forChild(),
+    // MarkdownModule.forChild(),
+    HomeModule,
   ],
 })
 export class MenuModule {}

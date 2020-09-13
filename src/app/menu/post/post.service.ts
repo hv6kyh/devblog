@@ -15,7 +15,9 @@ export class PostService {
   // 디비에서 가져오면 자원 아까움
   private tmpPost: Post;
 
-  constructor(private readonly http: HttpClient) {}
+  constructor(private readonly http: HttpClient) {
+    console.log('몇개생성?');
+  }
 
   getPostList(category: string): Observable<APISuccess | APIError> {
     return this.http.get<APISuccess | APIError>(API_URL + `/${this.prefix}?category=${category}`);

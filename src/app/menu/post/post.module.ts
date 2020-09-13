@@ -41,6 +41,5 @@ import { WriteComponent } from './write/write.component';
     NgxPaginationModule,
     MarkdownModule.forChild(),
   ],
-  providers: [PostService],
 })
 export class PostModule {}

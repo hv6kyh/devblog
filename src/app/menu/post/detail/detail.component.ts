@@ -47,6 +47,6 @@ export class DetailComponent implements OnInit, OnDestroy {
 
   goToRewrite() {
     this.postService.setTmpPost(this.post);
-    this.router.navigate(['../write'], { relativeTo: this.route, queryParams: { postId: this.postId } });
+    this.router.navigate(['../write'], { relativeTo: this.route });
   }
 }
