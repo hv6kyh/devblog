@@ -47,7 +47,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     private menuService: NbMenuService,
     private themeService: NbThemeService,
     private layoutService: LayoutService,
-    private authService: NbAuthService,
+    private nbAuthService: NbAuthService,
     private readonly nbWindowService: NbWindowService,
   ) {}
   // private breakpointService: NbMediaBreakpointsService,
@@ -61,7 +61,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     //   .pipe(takeUntil(this.destroy$))
     //   .subscribe((users: any) => (this.user = users.youngho));
 
-    this.authService
+    this.nbAuthService
       .onTokenChange()
       .pipe(takeUntil(this.destroy$))
       .subscribe((token: NbAuthToken) => {

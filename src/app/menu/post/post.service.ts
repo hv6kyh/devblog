@@ -1,9 +1,10 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { APIError, APISuccess } from '../../shared/constant/DTO';
 import { API_URL } from '../../shared/config/config';
 import { PostCreate, Post, PostUpdate } from './types';
+import { NbAuthService } from '@nebular/auth';
 
 @Injectable({
   providedIn: 'root',
@@ -15,9 +16,7 @@ export class PostService {
   // 디비에서 가져오면 자원 아까움
   private tmpPost: Post;
 
-  constructor(private readonly http: HttpClient) {
-    console.log('몇개생성?');
-  }
+  constructor(private readonly http: HttpClient, private readonly nbAuthService: NbAuthService) {}
 
   getPostList(category: string): Observable<APISuccess | APIError> {
     return this.http.get<APISuccess | APIError>(API_URL + `/${this.prefix}?category=${category}`);
@@ -27,12 +26,16 @@ export class PostService {
     return this.http.get<APISuccess | APIError>(API_URL + `/${this.prefix}/${postId}`);
   }
 
-  createPost(dto: PostCreate): Observable<APISuccess | APIError> {
-    return this.http.post<APISuccess | APIError>(API_URL + `/${this.prefix}`, dto);
+  createPost(dto: PostCreate, jwt: string): Observable<APISuccess | APIError> {
+    return this.http.post<APISuccess | APIError>(API_URL + `/${this.prefix}`, dto, {
+      headers: new HttpHeaders().set('Authorization', `Bearer ${jwt}`),
+    });
   }
 
-  updatePost(postId: string, dto: PostUpdate): Observable<APISuccess | APIError> {
-    return this.http.put<APISuccess | APIError>(API_URL + `/${this.prefix}/${postId}`, dto);
+  updatePost(postId: string, dto: PostUpdate, jwt: string): Observable<APISuccess | APIError> {
+    return this.http.put<APISuccess | APIError>(API_URL + `/${this.prefix}/${postId}`, dto, {
+      headers: new HttpHeaders().set('Authorization', `Bearer ${jwt}`),
+    });
   }
 
   public setTmpPost(post: Post) {

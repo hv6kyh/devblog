@@ -23,7 +23,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NbAuthModule, NbPasswordAuthStrategy, NbAuthJWTToken } from '@nebular/auth';
 import { API_URL } from './shared/config/config';
-import { AuthGuardService } from './auth-guard.service';
+import { AuthGuardService } from './shared/auth/auth-guard.service';
 
 // function that returns `MarkedOptions` with renderer override
 const markedOptionsFactory = (): MarkedOptions => {
