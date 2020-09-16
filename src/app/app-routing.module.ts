@@ -4,10 +4,6 @@ import { NbAuthComponent } from '@nebular/auth';
 
 export const routes: Routes = [
   {
-    path: 'pages2',
-    loadChildren: () => import('./pages/pages.module').then((m) => m.PagesModule),
-  },
-  {
     path: 'auth',
     component: NbAuthComponent,
     loadChildren: () => import('./shared/auth/auth.module').then((m) => m.AuthModule),
