@@ -12,7 +12,6 @@
 
     "number-leading-zero": "always",
     "number-no-trailing-zeros": true,
-    "length-zero-no-unit": false,
 
     "string-no-newline": true,
     "string-quotes": "single",
