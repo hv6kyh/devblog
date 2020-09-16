@@ -1,13 +1,13 @@
 {
-  "name": "ngx-admin",
+  "name": "devblog",
   "version": "6.0.0",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/akveo/ngx-admin.git"
+    "url": "git+https://github.com/hv6kyh/devblog.git"
   },
   "bugs": {
-    "url": "https://github.com/akveo/ngx-admin/issues"
+    "url": "https://github.com/hv6kyh/devblog/issues"
   },
   "scripts": {
     "ng": "ng",
