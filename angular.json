@@ -203,6 +203,15 @@
             "typeCheck": true,
             "exclude": []
           }
+        },
+        "deploy": {
+          "builder": "angular-cli-ghpages:deploy",
+          "options": {
+            "repo": "https://github.com/hv6kyh/devblog.git",
+            "message": "테스트배포",
+            "branch": "gh-pages",
+            "noSilent": true
+          }
         }
       }
     },
