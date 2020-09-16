@@ -18,7 +18,7 @@
     "test": "ng test",
     "test:coverage": "rimraf coverage && npm run test -- --code-coverage",
     "lint": "ng lint",
-    "lint:fix": "ng lint ngx-admin-demo --fix",
+    "lint:fix": "ng lint devblog --fix",
     "lint:styles": "stylelint ./src/**/*.scss",
     "lint:my": "eslint -c .eslintrc.js --ext .ts src/app",
     "lint:ci": "npm run lint && npm run lint:styles",
