@@ -207,6 +207,7 @@
         "deploy": {
           "builder": "angular-cli-ghpages:deploy",
           "options": {
+            "baseHref": "devblog",
             "repo": "https://github.com/hv6kyh/devblog.git",
             "message": "테스트배포",
             "branch": "gh-pages",
