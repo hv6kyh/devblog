@@ -3,6 +3,9 @@
 // @nebular out of the box themes
 @import '~@nebular/theme/styles/themes';
 
+// my fonts
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@400;700&display=swap');
+
 $nb-themes: nb-register-theme(
   (
     layout-padding-top: 2.25rem,
@@ -19,6 +22,8 @@ $nb-themes: nb-register-theme(
     slide-out-background: #f7f9fc,
     slide-out-shadow-color: 0 4px 14px 0 #8f9bb3,
     slide-out-shadow-color-rtl: 0 4px 14px 0 #8f9bb3,
+    // font-family-primary: unquote('Nanum Gothic Coding, monospace'),
+    // font-family-secondary: font-family-primary,,,,
   ),
   default,
   default
@@ -61,6 +66,8 @@ $nb-themes: nb-register-theme(
     slide-out-background: linear-gradient(270deg, #edf1f7 0%, #e4e9f2 100%),
     slide-out-shadow-color: 0 4px 14px 0 #8f9bb3,
     slide-out-shadow-color-rtl: 0 4px 14px 0 #8f9bb3,
+    font-family-primary: unquote('Nanum Gothic Coding, monospace'),
+    font-family-secondary: font-family-primary,
   ),
   corporate,
   corporate
