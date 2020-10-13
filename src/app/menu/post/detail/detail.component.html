@@ -1,24 +1,22 @@
-<div class="col-md-12 col-lg-12 col-xxxl-12">
-  <nb-card size="large">
-    <nb-card-header>
-      <div class="grid">
-        <div class="grid_item text">
-          <h3>
-            {{ this.post?.title }}
-          </h3>
-          <p>
-            {{ this.post?.reg_dt | date: 'short':'KST' }}<br />
-            {{ this.post?.author }}
-          </p>
-        </div>
-
-        <div class="grid_item button">
-          <button nbButton (click)="this.goToRewrite()" [disabled]="!this.loadFinish">수정</button>
-        </div>
+<nb-card size="large">
+  <nb-card-header>
+    <div class="grid">
+      <div class="grid_item text">
+        <h3>
+          {{ this.post?.title }}
+        </h3>
+        <p>
+          {{ this.post?.reg_dt | date: 'short':'KST' }}<br />
+          {{ this.post?.author }}
+        </p>
       </div>
-    </nb-card-header>
-    <nb-card-body>
-      <markdown [data]="this.post?.content"> </markdown>
-    </nb-card-body>
-  </nb-card>
-</div>
+
+      <div class="grid_item button">
+        <button nbButton (click)="this.goToRewrite()" [disabled]="!this.loadFinish">수정</button>
+      </div>
+    </div>
+  </nb-card-header>
+  <nb-card-body>
+    <markdown [data]="this.post?.content"> </markdown>
+  </nb-card-body>
+</nb-card>
