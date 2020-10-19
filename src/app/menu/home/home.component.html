@@ -1,7 +1,6 @@
-<div class="col-md-12 col-lg-12 col-xxxl-12">
   <nb-flip-card>
     <nb-card-front>
-      <nb-card size="large">
+      <nb-card size="giant">
         <nb-card-body>
           <div class="container">
             <div style="margin-bottom: 7vh">
@@ -30,7 +29,7 @@
       </nb-card>
     </nb-card-front>
     <nb-card-back>
-      <nb-card size="large">
+      <nb-card size="giant">
         <nb-card-body>
           <markdown [data]="this.post?.content"> </markdown>
           <button *ngIf="this.isAuthenticated" nbButton (click)="this.goToRewrite()">수정하기</button>
@@ -39,4 +38,4 @@
       </nb-card>
     </nb-card-back>
   </nb-flip-card>
-</div>
+

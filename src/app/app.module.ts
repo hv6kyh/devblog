@@ -26,20 +26,20 @@ import { API_URL } from './shared/config/config';
 import { AuthGuardService } from './shared/auth/auth-guard.service';
 
 // function that returns `MarkedOptions` with renderer override
-const markedOptionsFactory = (): MarkedOptions => {
-  const renderer = new MarkedRenderer();
+// const markedOptionsFactory = (): MarkedOptions => {
+//   const renderer = new MarkedRenderer();
 
-  renderer.blockquote = (text: string) => '<blockquote class="blockquote"><p>' + text + '</p></blockquote>';
+//   renderer.blockquote = (text: string) => '<blockquote class="blockquote"><p>' + text + '</p></blockquote>';
 
-  return {
-    renderer: renderer,
-    gfm: true,
-    breaks: false,
-    pedantic: false,
-    smartLists: true,
-    smartypants: false,
-  };
-};
+//   return {
+//     renderer: renderer,
+//     gfm: true,
+//     breaks: false,
+//     pedantic: false,
+//     smartLists: true,
+//     smartypants: false,
+//   };
+// };
 
 @NgModule({
   declarations: [AppComponent],
@@ -64,7 +64,11 @@ const markedOptionsFactory = (): MarkedOptions => {
     MarkdownModule.forRoot({
       markedOptions: {
         provide: MarkedOptions,
-        useFactory: markedOptionsFactory,
+        // useFactory: markedOptionsFactory,
+        useValue: {
+          gfm: true,
+          breaks: true,
+        }
       },
     }),
     NbAuthModule.forRoot({

@@ -1,4 +1,4 @@
-<nb-card size="large">
+<nb-card size="giant">
   <nb-card-header>
     <div class="grid">
       <div class="grid_item text">
@@ -18,5 +18,8 @@
   </nb-card-header>
   <nb-card-body>
     <markdown [data]="this.post?.content"> </markdown>
+    <!-- <markdown ngPreserveWhitespaces>
+      {{ this.post?.content }}
+    </markdown> -->
   </nb-card-body>
 </nb-card>
