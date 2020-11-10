@@ -61,6 +61,9 @@ export class DetailComponent implements OnInit, OnDestroy, AfterViewChecked {
         Array.from(images).forEach((el: HTMLImageElement) => {
           // 순회하며 클릭 이벤트 부여
           if (!el.onclick) {
+            if (el.width > el.naturalWidth) {
+              el.width = el.naturalWidth;
+            }
             el.onclick = () => {
               if (el.width === el.naturalWidth) {
                 el.setAttribute('width', '100%');
