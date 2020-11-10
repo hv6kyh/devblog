@@ -13,6 +13,21 @@
         {{ this.buttonLabel }}
       </button>
       <button nbButton disabled *ngIf="!createPostForm.valid">작성</button>
+      <p>
+        <label for="file">Choose File</label>
+        <input type="file"
+          accept=".gif, .jpg, .png"
+          id="file"
+          (change)="uploadImage($event.target.files)">
+      </p>
     </form>
   </nb-card-body>
 </nb-card>
+
+<!-- <div class="form-group">
+  <label for="file">Choose File</label>
+  <input type="file"
+         accept=".gif, .jpg, .png"
+         id="file"
+         (change)="uploadImage($event.target.files)">
+</div> -->

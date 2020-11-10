@@ -6,6 +6,7 @@ import { ActivatedRoute } from '@angular/router';
 import { PostCreate, PostUpdate, Post } from '../types';
 import { NbAuthService, NbAuthToken } from '@nebular/auth';
 import { Subscription } from 'rxjs';
+import { S3Service } from '../../../shared/service/s3.service';
 
 @Component({
   selector: 'ngx-write',
@@ -22,12 +23,15 @@ export class WriteComponent implements OnInit, OnDestroy {
   private token$: Subscription;
   private http$: Subscription;
 
+  private file: File;
+
   constructor(
     private readonly formBuilder: FormBuilder,
     private readonly postService: PostService,
     private readonly location: Location,
     private route: ActivatedRoute,
     private readonly nbAuthService: NbAuthService,
+    private readonly s3Service: S3Service
   ) {
     this.createPostForm = this.formBuilder.group({
       title: new FormControl('', [Validators.required]),
@@ -86,5 +90,16 @@ export class WriteComponent implements OnInit, OnDestroy {
         });
       }
     });
+  }
+
+  // 본문에 마크다운 형식의 이미지 첨부 라인 추가
+  appendLine(str: string) {
+    this.createPostForm.patchValue({ content: this.createPostForm.value.content + str });
+  }
+
+  async uploadImage(files: FileList) {
+    this.file = files.item(0);
+    const result: any = await this.s3Service.upload('devblog-images', this.file);
+    this.appendLine(`![image](${result.Location})`);
   }
 }
