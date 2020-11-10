@@ -59,19 +59,21 @@ export class DetailComponent implements OnInit, OnDestroy, AfterViewChecked {
 
       if (images.length) {
         Array.from(images).forEach((el: HTMLImageElement) => {
-          // 순회하며 클릭 이벤트 부여
-          if (!el.onclick) {
-            if (el.width > el.naturalWidth) {
-              el.width = el.naturalWidth;
-            }
-            el.onclick = () => {
-              if (el.width === el.naturalWidth) {
-                el.setAttribute('width', '100%');
-              } else {
+          el.onload = () => {
+            // 순회하며 클릭 이벤트 부여
+            if (!el.onclick) {
+              if (el.width > el.naturalWidth) {
                 el.width = el.naturalWidth;
               }
-            };
-          }
+              el.onclick = () => {
+                if (el.width === el.naturalWidth) {
+                  el.setAttribute('width', '100%');
+                } else {
+                  el.width = el.naturalWidth;
+                }
+              };
+            }
+          };
         });
         this.imageEventFlag = true;
       }
