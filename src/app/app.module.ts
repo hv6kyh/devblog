@@ -4,7 +4,7 @@
  * Licensed under the MIT License. See License.txt in the project root for license information.
  */
 import { HttpClientModule } from '@angular/common/http';
-import { NgModule } from '@angular/core';
+import { NgModule, SecurityContext } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
@@ -62,13 +62,18 @@ import { AuthGuardService } from './shared/auth/auth-guard.service';
     CoreModule.forRoot(),
     ThemeModule.forRoot(),
     MarkdownModule.forRoot({
+      /**
+       * 글 상세 컴포넌트에서 이미지 클릭 이벤트 부여, p 태그 스타일 변경을 위해
+       * sanitize를 disable 처리함
+       */
+      sanitize: SecurityContext.NONE,
       markedOptions: {
         provide: MarkedOptions,
         // useFactory: markedOptionsFactory,
         useValue: {
           gfm: true,
           breaks: true,
-        }
+        },
       },
     }),
     NbAuthModule.forRoot({

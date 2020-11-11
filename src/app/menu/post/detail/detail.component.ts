@@ -11,7 +11,7 @@ import { MarkdownService } from 'ngx-markdown';
   templateUrl: './detail.component.html',
   styleUrls: ['./detail.component.scss'],
 })
-export class DetailComponent implements OnInit, OnDestroy, AfterViewChecked {
+export class DetailComponent implements OnInit, OnDestroy {
   private postId: string;
   post: Post = null;
 
@@ -42,43 +42,59 @@ export class DetailComponent implements OnInit, OnDestroy, AfterViewChecked {
       }
     });
 
-    // image 렌더러를 수정해서 width 속성 부여함
-    // 화면에 꽉차게
+    // image 렌더러 수정
+    // 이미지 크기는 화면의 너비에 맞게 우선 적용
+    // 현재 너비가 이미지의 원래 너비보다 커지면 원본 크기로 바꿈(PC일때)
+    // 클릭 이벤트 추가
     this.markdownService.renderer.image = (href: string, title: string, text: string) =>
       `
-        <img class="image" src="${href}" alt="${text}" width="100%">
+      <img src="${href}" alt="${text}" width="100%" onload="(function(img) {
+        if (img.width > img.naturalWidth) {
+          img.width = img.naturalWidth;
+        }
+      }(this))" onclick="(function(img) {
+        if (img.width === img.naturalWidth) {
+          img.setAttribute('width', '100%');
+        } else {
+          img.width = img.naturalWidth;
+        }
+      }(this))">
       `;
+
+    // 단락간 간격, 줄 간격 스타일 수정
+    this.markdownService.renderer.paragraph = (text: string) =>
+      `<p style="margin-bottom: 5vh; line-height: 1.5em;">${text}</p>`;
 
     this.imageEventFlag = false;
   }
 
-  ngAfterViewChecked(): void {
-    if (!this.imageEventFlag) {
-      // 클래스로 element 찾음
-      const images = document.getElementsByClassName('image');
+  // ngAfterViewChecked(): void {
+  //   if (!this.imageEventFlag) {
+  //     // 클래스로 element 찾음
+  //     const images = document.getElementsByClassName('image');
 
-      if (images.length) {
-        Array.from(images).forEach((el: HTMLImageElement) => {
-          el.onload = () => {
-            // 순회하며 클릭 이벤트 부여
-            if (!el.onclick) {
-              if (el.width > el.naturalWidth) {
-                el.width = el.naturalWidth;
-              }
-              el.onclick = () => {
-                if (el.width === el.naturalWidth) {
-                  el.setAttribute('width', '100%');
-                } else {
-                  el.width = el.naturalWidth;
-                }
-              };
-            }
-          };
-        });
-        this.imageEventFlag = true;
-      }
-    }
-  }
+  //     if (images.length) {
+  //       Array.from(images).forEach((el: HTMLImageElement) => {
+  //         el.onload = () => {
+  //           // 순회하며 클릭 이벤트 부여
+  //           if (!el.onclick) {
+  //             if (el.width > el.naturalWidth) {
+  //               el.width = el.naturalWidth;
+  //             }
+  //             el.onclick = () => {
+  //               if (el.width === el.naturalWidth) {
+  //                 el.setAttribute('width', '100%');
+  //               } else {
+  //                 el.width = el.naturalWidth;
+  //               }
+  //             };
+  //           }
+  //         };
+  //       });
+  //       this.imageEventFlag = true;
+  //     }
+  //   }
+  // }
 
   ngOnDestroy() {
     if (this.http$) {
