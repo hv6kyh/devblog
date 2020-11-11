@@ -63,7 +63,7 @@ export class DetailComponent implements OnInit, OnDestroy {
 
     // 단락간 간격, 줄 간격 스타일 수정
     this.markdownService.renderer.paragraph = (text: string) =>
-      `<p style="margin-bottom: 5vh; line-height: 1.5em;">${text}</p>`;
+      `<p line-height: 1.5em;">${text}</p>\n`;
 
     this.imageEventFlag = false;
   }
