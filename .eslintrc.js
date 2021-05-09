@@ -16,7 +16,7 @@ module.exports = {
     browser: true,
     node: true,
   },
-  extends: ['prettier', 'prettier/@typescript-eslint'],
+  extends: ['plugin:prettier/recommended', 'prettier/@typescript-eslint'],
   parser: '@typescript-eslint/parser',
   parserOptions: {
     sourceType: 'module',
